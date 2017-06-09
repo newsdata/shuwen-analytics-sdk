@@ -1,0 +1,6 @@
+framework module SHWAnalyticsSDK {
+  umbrella header "SHWAnalyticsSDK.h"
+
+  export *
+  module * { export * }
+}

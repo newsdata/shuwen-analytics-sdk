@@ -13,6 +13,14 @@
 + (SHWAnalyticsPublicConfig *_Nonnull)instanceWithAppKey:(NSString *_Nonnull)appKey;
 
 /**
+ 设置是否开启自动统计功能 (默认开启)
+ @warning 若关闭此功能，需手动插入埋点代码
+ 
+ @param needAutoTrace 是否开启自动统计功能
+ */
+- (void)setAutoTraceEnable:(BOOL)needAutoTrace;
+
+/**
  *  upload event in disk to server, every uploadInterval, default is 300s.
  */
 - (void)setUploadInterval:(NSUInteger)uploadInterval;

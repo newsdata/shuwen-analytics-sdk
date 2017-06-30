@@ -1,4 +1,4 @@
-This project is for cocoapods use. 
+This project is for cocoapods use.
 The procedure is as below
 
 1. push the latest SDK to here.

@@ -1,22 +1,27 @@
-# 巴吉度 iOS SDK 接入指南(v1.0.2)
+# 巴吉度 iOS SDK 接入指南(v1.0.3)
 
 This project is a public SDK for who want analyse user behaviors.
-Current version 1.0.2.
 Deploy target : iOS 8.0.
 
 ## 1 如何接入
 
-### 1.1 在项目的 Podfile 中，添加如下依赖：
+### 1.1 在机器上添加Pod仓库
+在命令行输入并执行：
+```bash
+pod repo add frameworkplatform https://code.aliyun.com/xhzy-ios/frameworkplatform.git
+```
+
+### 1.2 在项目的 Podfile 中，添加如下依赖：
 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
-source 'https://code.aliyun.com/xhzy-ios/frameworkplatform'
+source 'https://code.aliyun.com/xhzy-ios/frameworkplatform.git'
 
 target 'YourProject' do
   pod 'SHWAnalytics', '~> 1.0.2'
 end
 ```
-### 1.2 执行 `pod install`
+### 1.3 执行 `pod install`
 
 ## 2 Regist your app.
 Get your AppKey in our web site.
@@ -36,7 +41,7 @@ appKey值可从新华智云接口人获取（网站建设中，目前请联系�
 int main(int argc, char * argv[]) {
     @autoreleasepool {
 
-        SHWAnalyticsPublicConfig *config = [SHWAnalyticsPublicConfig instanceWithAppKey:@"your AppKey"];
+        SHWAnalyticsPublicConfig *config = [SHWAnalyticsPublicConfig instanceWithAppKey:@"your AppKey" deviceUDID:@"device UDID string"];
         [SHWAnalyticsSDKInterface startWithConfig:config];
 
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
@@ -76,13 +81,13 @@ In your js
 shw_analytics.record("your message in string format")
 ```
 
-## 5 Other config 
+## 5 Other config
 custom your report config.
 ```objective-c
 /**
 * 设置是否开启自动统计功能 (默认开启)，包括 app启动、app进入前台、退出前台、controllerIn、controllerOut、以及所有点击事件
 * @warning 若关闭此功能，需手动插入埋点代码
-* 
+*
 * @param needAutoTrace 是否开启自动统计功能
 */
 - (void)setAutoTraceEnable:(BOOL)needAutoTrace;

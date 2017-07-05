@@ -10,7 +10,14 @@
 
 @interface SHWAnalyticsPublicConfig : NSObject
 
-+ (SHWAnalyticsPublicConfig *_Nonnull)instanceWithAppKey:(NSString *_Nonnull)appKey;
+/**
+ convenience init method
+
+ @param appKey 新华智云平台注册的统一 appkey
+ @param utdid  设备 UDID
+ */
++ (SHWAnalyticsPublicConfig *_Nonnull)instanceWithAppKey:(NSString *_Nonnull)appKey
+                                              deviceUDID:(NSString *_Nonnull)utdid;
 
 /**
  设置是否开启自动统计功能 (默认开启)

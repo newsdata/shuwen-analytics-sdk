@@ -108,3 +108,7 @@ custom your report config.
 - (void)setStorageSizeThreshold:(long long)storageSizeThreshold;
 ```
 
+## 6 其它
+
+- 由于 UTDID.framework 不支持 bitcode ，需要将 Build setting 下 Build Options 中的Enable Bitcode 至为 NO
+

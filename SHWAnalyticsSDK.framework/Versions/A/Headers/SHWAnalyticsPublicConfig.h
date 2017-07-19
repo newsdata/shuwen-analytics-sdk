@@ -14,10 +14,8 @@
  convenience init method
 
  @param appKey 新华智云平台注册的统一 appkey
- @param utdid  设备 UDID
  */
-+ (SHWAnalyticsPublicConfig *_Nonnull)instanceWithAppKey:(NSString *_Nonnull)appKey
-                                              deviceUDID:(NSString *_Nonnull)utdid;
++ (SHWAnalyticsPublicConfig *_Nonnull)instanceWithAppKey:(NSString *_Nonnull)appKey;
 
 /**
  设置是否开启自动统计功能 (默认开启)
@@ -32,11 +30,11 @@
  */
 - (void)setUploadInterval:(NSUInteger)uploadInterval;
 /**
- *  When events' memory reaches this threshold, it will trigger memory queue store to disk.
+ *  When events' memory reaches this threshold, it will trigger memory queue store to disk, default is 15.
  */
 - (void)setMemoryEventNumberThreshold:(NSUInteger)memoryEventNumberThreshold;
 /**
- *  When single file size reaches storageSizeThreshold, this file will not be frozen. 单位：KB
+ *  When single file size reaches storageSizeThreshold, this file will not be frozen, default is 50KB. 单位：KB
  */
 - (void)setStorageSizeThreshold:(long long)storageSizeThreshold;
 

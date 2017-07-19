@@ -1,4 +1,4 @@
-# 巴吉度 iOS SDK 接入指南(v1.0.3)
+# 巴吉度 iOS SDK 接入指南(v1.0.4)
 
 This project is a public SDK for who want analyse user behaviors.
 Deploy target : iOS 8.0.
@@ -18,9 +18,12 @@ source 'https://github.com/CocoaPods/Specs.git'
 source 'https://code.aliyun.com/xhzy-ios/frameworkplatform.git'
 
 target 'YourProject' do
-  pod 'SHWAnalytics', '~> 1.0.2'
+  pod 'SHWAnalytics', '~> 1.0.4'
 end
 ```
+
+> 注: 以上 pod 版本号，请自行更新到最新版本
+
 ### 1.3 执行 `pod install`
 
 ## 2 Regist your app.
@@ -41,7 +44,7 @@ appKey值可从新华智云接口人获取（网站建设中，目前请联系�
 int main(int argc, char * argv[]) {
     @autoreleasepool {
 
-        SHWAnalyticsPublicConfig *config = [SHWAnalyticsPublicConfig instanceWithAppKey:@"your AppKey" deviceUDID:@"device UDID string"];
+        SHWAnalyticsPublicConfig *config = [SHWAnalyticsPublicConfig instanceWithAppKey:@"your AppKey"];
         [SHWAnalyticsSDKInterface startWithConfig:config];
 
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
@@ -111,4 +114,8 @@ custom your report config.
 ## 6 其它
 
 - 由于 UTDID.framework 不支持 bitcode ，需要将 Build setting 下 Build Options 中的Enable Bitcode 至为 NO
+
+## 7 Change Log
+
+- v1.0.4 接口变更，无需再传入 UTDID
 

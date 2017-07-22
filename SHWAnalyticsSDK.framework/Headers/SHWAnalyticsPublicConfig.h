@@ -10,11 +10,6 @@
 
 @interface SHWAnalyticsPublicConfig : NSObject
 
-/**
- convenience init method
-
- @param appKey 新华智云平台注册的统一 appkey
- */
 + (SHWAnalyticsPublicConfig *_Nonnull)instanceWithAppKey:(NSString *_Nonnull)appKey;
 
 /**

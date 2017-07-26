@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   s.version      = "1.0.6"
   s.summary      = "Analytics framework."
   s.homepage     = "https://code.aliyun.com/xhzy-ios/SHWAnalytics"
-  s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
+  s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author       = { "yangyang" => "yangyang@shuwen.com" }
   s.platform     = :ios, "8.0"
   s.source       = { :git => "https://code.aliyun.com/xhzy-ios/SHWAnalytics.git", :tag => "#{s.version}" }

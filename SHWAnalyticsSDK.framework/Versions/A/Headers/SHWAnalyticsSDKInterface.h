@@ -28,4 +28,6 @@
 
 + (void)customEvent:(NSString *_Nonnull)eventName value:(NSInteger)value duration:(long)duration args:(NSDictionary *_Nullable)args;
 
++ (NSString *_Nullable)utdid;
+
 @end

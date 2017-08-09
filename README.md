@@ -70,6 +70,8 @@ int main(int argc, char * argv[]) {
 + (void)clickPageName:(NSString *_Nonnull)pageName itemClass:(NSString *_Nonnull)itemClassName itemName:(NSString *_Nullable)itemTagName;
 
 + (void)customEvent:(NSString *_Nonnull)eventName value:(NSInteger)value duration:(long)duration args:(NSDictionary *_Nullable)args;
+
++ (NSString *_Nullable)utdid;
 ```
 
 ### 4.3 JSBridge.(support UIWebView, not support WKWebView yet)

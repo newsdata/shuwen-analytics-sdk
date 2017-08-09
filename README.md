@@ -71,7 +71,7 @@ int main(int argc, char * argv[]) {
 
 + (void)customEvent:(NSString *_Nonnull)eventName value:(NSInteger)value duration:(long)duration args:(NSDictionary *_Nullable)args;
 
-+ (NSString *_Nullable)utdid;
++ (NSString *_Nullable)queryUTDID;
 ```
 
 ### 4.3 JSBridge.(support UIWebView, not support WKWebView yet)

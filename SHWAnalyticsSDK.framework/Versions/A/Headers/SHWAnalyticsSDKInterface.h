@@ -28,6 +28,14 @@
 
 + (void)customEvent:(NSString *_Nonnull)eventName value:(NSInteger)value duration:(long)duration args:(NSDictionary *_Nullable)args;
 
-+ (NSString *_Nullable)utdid;
+/**
+ * @brief                       获取SDK生成的设备唯一标识.
+ *
+ * @warning                     调用说明:这个设备唯一标识是持久的,并且格式安全,iOS6以及以下,多应用互通.
+ *                              调用顺序:utdid任意时刻都可以调用.
+ *
+ * @return                      24字节的设备唯一标识.
+ */
++ (NSString *_Nullable)queryUTDID;
 
 @end

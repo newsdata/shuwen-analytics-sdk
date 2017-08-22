@@ -1,4 +1,4 @@
-# 巴吉度 iOS SDK 接入指南(v1.0.10)
+# 巴吉度 iOS SDK 接入指南(v1.0.11)
 
 This project is a public SDK for who want analyse user behaviors.
 Deploy target : iOS 8.0.
@@ -18,7 +18,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 source 'https://code.aliyun.com/xhzy-ios/frameworkplatform.git'
 
 target 'YourProject' do
-  pod 'SHWAnalytics', '~> 1.0.10'
+  pod 'SHWAnalytics', '~> 1.0.11'
 end
 ```
 
@@ -116,5 +116,5 @@ custom your report config.
 ## 6 其它
 
 - 由于 UTDID.framework 不支持 bitcode ，需要将 Build setting 下 Build Options 中的Enable Bitcode 至为 NO
-
+- 测试发现友盟的 SDK 中 crash 上报功能会覆盖其它 SDK 中的 crash 上报，请在接入巴吉度时，关闭友盟的 crash 上报功能； 或者保证在调用友盟的 config 配置后，再调用巴吉度 `startWithConfig：` 方法；
 

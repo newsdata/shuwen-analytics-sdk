@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "SHWAnalytics"
-  s.version      = "1.0.11"
+  s.version      = "1.0.12"
   s.summary      = "Analytics framework."
   s.homepage     = "https://code.aliyun.com/xhzy-ios/SHWAnalytics"
   s.license      = { :type => "MIT", :file => "LICENSE" }

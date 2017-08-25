@@ -24,7 +24,16 @@
 + (void)signIn:(NSString *_Nonnull)signId;
 + (void)signOff:(NSString *_Nonnull)signId;
 
-+ (void)clickPageName:(NSString *_Nonnull)pageName itemClass:(NSString *_Nonnull)itemClassName itemName:(NSString *_Nullable)itemTagName;
+/**
+ 自定义点击事件埋点
+
+ @param pageName 点击的所在页面名
+ @param itemClassName 点击的 item 的 ClassName, eg: UIButton, UIView
+ @param itemTagName 点击的 item 名，eg: loginButton
+ */
++ (void)clickPageName:(NSString *_Nonnull)pageName
+            itemClass:(NSString *_Nonnull)itemClassName
+             itemName:(NSString *_Nullable)itemTagName;
 
 + (void)customEvent:(NSString *_Nonnull)eventName value:(NSInteger)value duration:(long)duration args:(NSDictionary *_Nullable)args;
 

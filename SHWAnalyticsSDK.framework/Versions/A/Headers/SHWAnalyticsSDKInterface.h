@@ -38,12 +38,12 @@
 /**
  * 自定义事件埋点
  */
-+ (void)customEvent:(NSString *_Nonnull)eventID;
++ (void)customEvent:(NSString *_Nonnull)eventName;
 
-+ (void)customEvent:(NSString *_Nonnull)eventID
++ (void)customEvent:(NSString *_Nonnull)eventName
                args:(NSDictionary *_Nullable)args;
 
-+ (void)customEvent:(NSString *_Nonnull)eventID
++ (void)customEvent:(NSString *_Nonnull)eventName
               value:(NSInteger)value
                args:(NSDictionary *_Nullable)args;
 

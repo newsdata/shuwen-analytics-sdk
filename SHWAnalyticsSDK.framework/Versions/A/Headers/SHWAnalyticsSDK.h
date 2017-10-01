@@ -8,16 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-////! Project version number for SHWAnalyticsSDK.
-//FOUNDATION_EXPORT double SHWAnalyticsSDKVersionNumber;
-//
-////! Project version string for SHWAnalyticsSDK.
-//FOUNDATION_EXPORT const unsigned char SHWAnalyticsSDKVersionString[];
-
 #import <SHWAnalyticsSDK/SHWUIWebViewJSBridge.h>
 #import <SHWAnalyticsSDK/SHWAnalyticsSDKInterface.h>
 #import <SHWAnalyticsSDK/SHWAnalyticsPublicConfig.h>
-
-// In this header, you should import all the public headers of your framework using statements like #import <SHWAnalyticsSDK/PublicHeader.h>
-
-

@@ -1,4 +1,4 @@
-# 巴吉度 iOS SDK 接入指南(v1.1.0)
+# 巴吉度 iOS SDK 接入指南(v1.1.1)
 
 This project is a public SDK for who want analyse user behaviors.
 Deploy target : iOS 8.0.
@@ -18,7 +18,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 source 'https://code.aliyun.com/xhzy-ios/frameworkplatform.git'
 
 target 'YourProject' do
-  pod 'SHWAnalytics', '~> 1.1.0'
+  pod 'SHWAnalytics', '~> 1.1.1'
 end
 ```
 
@@ -45,6 +45,9 @@ int main(int argc, char * argv[]) {
     @autoreleasepool {
 
         SHWAnalyticsPublicConfig *config = [SHWAnalyticsPublicConfig instanceWithAppKey:@"your AppKey"];
+//        [config setUploadInterval:15];
+//        [config setStorageSizeThreshold:5];
+//        [config setMemoryEventNumberThreshold:10];
         [SHWAnalyticsSDKInterface startWithConfig:config];
 
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
@@ -53,43 +56,48 @@ int main(int argc, char * argv[]) {
 ```
 
 ### 4.2 record
-```objective-c
-[SHWAnalyticsSDKInterface controllerIn:@"your controller name"];
-[SHWAnalyticsSDKInterface controllerOut:@"your controller name"];
 
-//Other interfaces
+```objective-c
+#pragma mark - auto track event
+
+// ******************** 以下为自动埋点，可不必手动添加  ************************
 + (void)appLaunch;
 + (void)appTerminate;
-
 + (void)appBecomeActive;
 + (void)appResignActive;
 
 + (void)controllerIn:(NSString *_Nonnull)pageName;
 + (void)controllerOut:(NSString *_Nonnull)pageName;
+// ******************** 自动埋点，可不必手动添加 ↑ ************************
 
+#pragma mark - custom event
+
+/** 
+ *  登入、登出 event 埋点
+ */
 + (void)signIn:(NSString *_Nonnull)signId;
 + (void)signOff:(NSString *_Nonnull)signId;
 
 /**
- * 自定义点击事件埋点
-
- * @param pageName 点击的所在页面名
- * @param itemClassName 点击的 item 的 ClassName, eg: UIButton, UIView
- * @param itemTagName 点击的 item 名，eg: loginButton
+ *  click 事件埋点
+ *
+ *  @param pageName          点击所在页面名
+ *  @param itemClassName     点击的 item 的 Class Name
+ *  @param itemTagName       点击的 item name
  */
 + (void)clickPageName:(NSString *_Nonnull)pageName
             itemClass:(NSString *_Nonnull)itemClassName
              itemName:(NSString *_Nullable)itemTagName;
 
 /**
- * 自定义事件埋点
+ *  自定义事件埋点
  */
-+ (void)customEvent:(NSString *_Nonnull)eventID;
++ (void)customEvent:(NSString *_Nonnull)eventName;
 
-+ (void)customEvent:(NSString *_Nonnull)eventID
++ (void)customEvent:(NSString *_Nonnull)eventName
                args:(NSDictionary *_Nullable)args;
 
-+ (void)customEvent:(NSString *_Nonnull)eventID
++ (void)customEvent:(NSString *_Nonnull)eventName
               value:(NSInteger)value
                args:(NSDictionary *_Nullable)args;
 
@@ -98,31 +106,59 @@ int main(int argc, char * argv[]) {
            duration:(long)duration
                args:(NSDictionary *_Nullable)args;
 
+#pragma mark - white list event
+
+// ******************** 添加白名单事件 ↓  ************************
+//  NOTE: 白名单事件会立即上传（不区分网络状态)，勿随意设置
+
++ (void)recordImmediatelyUploadEvent:(NSString *_Nonnull)eventName;
+
++ (void)recordImmediatelyUploadEvent:(NSString *_Nonnull)eventName
+                                args:(NSDictionary *_Nullable)args;
+
++ (void)recordImmediatelyUploadEvent:(NSString *_Nonnull)eventName
+                               value:(NSInteger)value
+                                args:(NSDictionary *_Nullable)args;
+
++ (void)recordImmediatelyUploadEvent:(NSString *_Nonnull)eventName
+                               value:(NSInteger)value
+                            duration:(long)duration
+                                args:(NSDictionary *_Nullable)args;
+
+// ******************** 白名单事件 ↑  ************************
+
+#pragma mark - utils
+
 /**
- * @brief                       获取SDK生成的设备唯一标识.
+ *  获取SDK生成的设备唯一标识.
  *
- * @warning                     调用说明:这个设备唯一标识是持久的,并且格式安全,iOS6以及以下,多应用互通.
- *                              调用顺序:utdid任意时刻都可以调用.
+ *  @warning    调用说明:这个设备唯一标识是持久的,并且格式安全,iOS6以及以下,多应用互通.
+ *              调用顺序:utdid任意时刻都可以调用.
  *
- * @return                      24字节的设备唯一标识.
+ *  @return     24字节的设备唯一标识.
  */
 + (NSString *_Nullable)queryUTDID;
 ```
 
 ### 4.3 JSBridge.(support UIWebView, not support WKWebView yet)
+
 In your UIWebviewController
+
 ```objective-c
 [SHWUIWebViewJSBridge registWebView:yourWebView withId:@"webViewID"];
 [SHWUIWebViewJSBridge deRegistWebViewWithId:@"webViewID"];
 ```
 
 In your js
+
 ```javascript
 shw_analytics.record("your message in string format")
 ```
 
 ## 5 Other config
+
 custom your report config.
+
 ```objective-c
 /**
 * 设置是否开启自动统计功能 (默认开启)，包括 app启动、app进入前台、退出前台、controllerIn、controllerOut、以及所有点击事件
@@ -135,16 +171,36 @@ custom your report config.
 
 ```objective-c
 /**
-*  upload events in disk to server every uploadInterval seconds, default is 30s.
-*/
+ *  设置是否开启自动统计功能 (默认开启)
+ *
+ *  @warning 若关闭此功能，需手动插入埋点代码
+ *
+ *  @param needAutoTrace 是否开启自动统计
+ */
+- (void)setAutoTraceEnable:(BOOL)needAutoTrace;
+
+/**
+ *  设置日志上报周期 （default：15s）
+ *  upload event in disk to server, every uploadInterval
+ *
+ *  @param uploadInterval 单位为秒,最小 3 秒,最大 86400 秒(24hour).
+ */
 - (void)setUploadInterval:(NSUInteger)uploadInterval;
+
 /**
-*  When events' memory reaches this threshold, it will trigger memory queue store to disk.
-*/
+ *  设置内存日志写入文件的触发条数 limit （default：每满 15 条写入一次）
+ *  When events' memory reaches this threshold, it will trigger memory queue store to disk
+ *
+ *  @param memoryEventNumberThreshold 单位为条
+ */
 - (void)setMemoryEventNumberThreshold:(NSUInteger)memoryEventNumberThreshold;
+
 /**
-*  When single file size reaches storageSizeThreshold, this file will be frozen. 单位：KB
-*/
+ *  设置单个日志文件的 size limit （default： 3KB）
+ *  When single file size reaches storageSizeThreshold, this file will not be frozen
+ *
+ *  @param storageSizeThreshold 单位为 KB
+ */
 - (void)setStorageSizeThreshold:(long long)storageSizeThreshold;
 ```
 

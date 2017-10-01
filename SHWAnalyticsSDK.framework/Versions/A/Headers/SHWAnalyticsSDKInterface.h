@@ -10,33 +10,45 @@
 #import "SHWAnalyticsPublicConfig.h"
 
 @interface SHWAnalyticsSDKInterface : NSObject
+
+/** 
+ *  初始化埋点统计 SDK
+ */
 + (void)startWithConfig:(SHWAnalyticsPublicConfig *_Nonnull)config;
 
+#pragma mark - auto track event
+
+// ******************** 以下为自动埋点，可不必手动添加  ************************
 + (void)appLaunch;
 + (void)appTerminate;
-
 + (void)appBecomeActive;
 + (void)appResignActive;
 
 + (void)controllerIn:(NSString *_Nonnull)pageName;
 + (void)controllerOut:(NSString *_Nonnull)pageName;
+// ******************** 自动埋点，可不必手动添加 ↑ ************************
 
+#pragma mark - custom event
+
+/** 
+ *  登入、登出 event 埋点
+ */
 + (void)signIn:(NSString *_Nonnull)signId;
 + (void)signOff:(NSString *_Nonnull)signId;
 
 /**
- * 自定义点击事件埋点
-
- * @param pageName 点击的所在页面名
- * @param itemClassName 点击的 item 的 ClassName, eg: UIButton, UIView
- * @param itemTagName 点击的 item 名，eg: loginButton
+ *  click 事件埋点
+ *
+ *  @param pageName          点击所在页面名
+ *  @param itemClassName     点击的 item 的 Class Name
+ *  @param itemTagName       点击的 item name
  */
 + (void)clickPageName:(NSString *_Nonnull)pageName
             itemClass:(NSString *_Nonnull)itemClassName
              itemName:(NSString *_Nullable)itemTagName;
 
 /**
- * 自定义事件埋点
+ *  自定义事件埋点
  */
 + (void)customEvent:(NSString *_Nonnull)eventName;
 
@@ -52,13 +64,36 @@
            duration:(long)duration
                args:(NSDictionary *_Nullable)args;
 
+#pragma mark - white list event
+
+// ******************** 添加白名单事件 ↓  ************************
+//  NOTE: 白名单事件会立即上传（不区分网络状态)，勿随意设置
+
++ (void)recordImmediatelyUploadEvent:(NSString *_Nonnull)eventName;
+
++ (void)recordImmediatelyUploadEvent:(NSString *_Nonnull)eventName
+                                args:(NSDictionary *_Nullable)args;
+
++ (void)recordImmediatelyUploadEvent:(NSString *_Nonnull)eventName
+                               value:(NSInteger)value
+                                args:(NSDictionary *_Nullable)args;
+
++ (void)recordImmediatelyUploadEvent:(NSString *_Nonnull)eventName
+                               value:(NSInteger)value
+                            duration:(long)duration
+                                args:(NSDictionary *_Nullable)args;
+
+// ******************** 白名单事件 ↑  ************************
+
+#pragma mark - utils
+
 /**
- * @brief                       获取SDK生成的设备唯一标识.
+ *  获取SDK生成的设备唯一标识.
  *
- * @warning                     调用说明:这个设备唯一标识是持久的,并且格式安全,iOS6以及以下,多应用互通.
- *                              调用顺序:utdid任意时刻都可以调用.
+ *  @warning    调用说明:这个设备唯一标识是持久的,并且格式安全,iOS6以及以下,多应用互通.
+ *              调用顺序:utdid任意时刻都可以调用.
  *
- * @return                      24字节的设备唯一标识.
+ *  @return     24字节的设备唯一标识.
  */
 + (NSString *_Nullable)queryUTDID;
 

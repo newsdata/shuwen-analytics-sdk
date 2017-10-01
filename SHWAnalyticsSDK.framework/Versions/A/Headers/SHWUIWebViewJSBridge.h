@@ -10,12 +10,15 @@
 #import <UIKit/UIKit.h>
 
 @interface SHWUIWebViewJSBridge : NSObject
+
 /**
  *  invoke this method in main thread.
  */
 + (void)registWebView:(UIWebView *_Nonnull)webView withId:(NSString *_Nonnull)webViewId;
+
 /**
  *  remember invoke this method in dealloc
  */
 + (void)deRegistWebViewWithId:(NSString *_Nonnull)webViewId;
+
 @end

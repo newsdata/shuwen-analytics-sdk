@@ -1,41 +1,32 @@
-# 巴吉度 iOS SDK 接入指南(v1.1.1)
+# 巴吉度 iOS SDK 接入指南(v1.1.2)
 
-This project is a public SDK for who want analyse user behaviors.
 Deploy target : iOS 8.0.
 
 ## 1 如何接入
 
-### 1.1 在机器上添加Pod仓库
-在命令行输入并执行：
-```bash
-pod repo add frameworkplatform https://code.aliyun.com/xhzy-ios/frameworkplatform.git
-```
-
-### 1.2 在项目的 Podfile 中，添加如下依赖：
+### 1.1 在项目的 Podfile 中，添加如下依赖：
 
 ```ruby
-source 'https://github.com/CocoaPods/Specs.git'
-source 'https://code.aliyun.com/xhzy-ios/frameworkplatform.git'
-
 target 'YourProject' do
-  pod 'SHWAnalytics', '~> 1.1.1'
+  pod 'SHWAnalyticsSDK', '~> 1.1.2'
 end
 ```
 
-> 注: 以上 pod 版本号，请自行更新到最新版本
+### 1.2 执行 `pod install`
 
-### 1.3 执行 `pod install`
+### 1.3 Config
+
+"Build Settings" -> "Other Linker Flags", add "-Objc".
 
 ## 2 Regist your app.
+
 Get your AppKey in our web site.
 appKey值可从新华智云接口人获取（网站建设中，目前请联系接口人）
 
-## 3 Config
-"Build Settings" -> "Other Linker Flags", add "-Objc".
+## 3 How to use
 
-## 4 How to use
+### 3.1 init
 
-### 4.1 init
 **需要在 `main.m` 中进行 SDK 初始化相关配置**
 
 ```objective-c
@@ -55,7 +46,7 @@ int main(int argc, char * argv[]) {
 }
 ```
 
-### 4.2 record
+### 3.2 record
 
 ```objective-c
 #pragma mark - auto track event
@@ -72,7 +63,7 @@ int main(int argc, char * argv[]) {
 
 #pragma mark - custom event
 
-/** 
+/**
  *  登入、登出 event 埋点
  */
 + (void)signIn:(NSString *_Nonnull)signId;
@@ -140,7 +131,7 @@ int main(int argc, char * argv[]) {
 + (NSString *_Nullable)queryUTDID;
 ```
 
-### 4.3 JSBridge.(support UIWebView, not support WKWebView yet)
+### 3.3 JSBridge.(support UIWebView, not support WKWebView yet)
 
 In your UIWebviewController
 
@@ -155,7 +146,7 @@ In your js
 shw_analytics.record("your message in string format")
 ```
 
-## 5 Other config
+## 4 Other config
 
 custom your report config.
 
@@ -204,7 +195,7 @@ custom your report config.
 - (void)setStorageSizeThreshold:(long long)storageSizeThreshold;
 ```
 
-## 6 其它
+## 5 其它
 
 - 由于 UTDID.framework 不支持 bitcode ，需要将 Build setting 下 Build Options 中的Enable Bitcode 至为 NO
 - 测试发现友盟的 SDK 中 crash 上报功能会覆盖其它 SDK 中的 crash 上报，请在接入巴吉度时，关闭友盟的 crash 上报功能； 或者保证在调用友盟的 config 配置后，再调用巴吉度 `startWithConfig：` 方法；

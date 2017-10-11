@@ -66,9 +66,13 @@
 
 #pragma mark - white list event
 
-// ******************** 添加白名单事件 ↓  ************************
-//  NOTE: 白名单事件会立即上传（不区分网络状态)，勿随意设置
+// ******************** 白名单事件埋点 ↓  ************************
 
+/** 
+ *  上报白名单事件
+ *
+ *  @warning  白名单 event 会立即上传（不区分网络状态)
+ */
 + (void)recordImmediatelyUploadEvent:(NSString *_Nonnull)eventName;
 
 + (void)recordImmediatelyUploadEvent:(NSString *_Nonnull)eventName
@@ -82,7 +86,6 @@
                                value:(NSInteger)value
                             duration:(long)duration
                                 args:(NSDictionary *_Nullable)args;
-
 // ******************** 白名单事件 ↑  ************************
 
 #pragma mark - utils

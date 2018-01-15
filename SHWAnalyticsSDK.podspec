@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
   s.name         = "SHWAnalyticsSDK"
-  s.version      = "1.1.3"
+  s.version      = "1.1.4"
   s.summary      = "Analytics framework."
   s.homepage     = "https://github.com/newsdata/shuwen-analytics-sdk"
   s.license      = { :type => "MIT", :file => "LICENSE" }
-  s.author       = { "yangyang" => "yangyang@shuwen.com" }
+  s.author       = { "yangyang" => "yangyang@shuwen.com", 'yehao' => 'yehao@shuwen.com' }
   s.platform     = :ios, "8.0"
   s.source       = { :git => "https://github.com/newsdata/shuwen-analytics-sdk.git", :tag => "#{s.version}" }
 

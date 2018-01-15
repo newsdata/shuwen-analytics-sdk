@@ -1,4 +1,4 @@
-# 巴吉度 iOS SDK 接入指南(v1.1.3)
+# 巴吉度 iOS SDK 接入指南(v1.1.4)
 
 Deploy target : iOS 8.0.
 
@@ -8,7 +8,7 @@ Deploy target : iOS 8.0.
 
 ```ruby
 target 'YourProject' do
-  pod 'SHWAnalyticsSDK', '~> 1.1.3'
+  pod 'SHWAnalyticsSDK', '~> 1.1.4'
 end
 ```
 
@@ -131,19 +131,61 @@ int main(int argc, char * argv[]) {
 + (NSString *_Nullable)queryUTDID;
 ```
 
-### 3.3 JSBridge.(support UIWebView, not support WKWebView yet)
+### 3.3 UIWebView JSBridge
 
-In your UIWebviewController
+In your UIWebview's controller
 
 ```objective-c
-[SHWUIWebViewJSBridge registWebView:yourWebView withId:@"webViewID"];
-[SHWUIWebViewJSBridge deRegistWebViewWithId:@"webViewID"];
+/**
+* @brief 注册webView，主线程调用。
+* @param webView                   webView，不能为空
+*/
++ (void)registWebView:(UIWebView *_Nonnull)webView;
+
+/**
+* @brief 注销webView，dealloc 中调用。
+* @param webView           webView，不能为空
+*/
++ (void)deRegistWebView:(UIWebView *_Nonnull)webView;
 ```
 
 In your js
 
 ```javascript
-shw_analytics.record("your message in string format")
+
+```
+
+### 3.4 WKWebView JSBridge
+
+In your WKWebview's controller
+
+```objective-c
+//- (void)viewDidLoad。必须初始化userContentController。
+WKWebViewConfiguration *config = [WKWebViewConfiguration new];
+config.preferences = [WKPreferences new];
+config.preferences.javaScriptEnabled = YES;
+config.userContentController = [WKUserContentController new];   //注意，在调用registWKWebView:userContentController:后，不能再重新new了然后替换config的userContentController。
+self.wkWebView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:config];
+
+/**
+ * @brief 注册webView。
+          注意：必须在viewWillAppear: 中调用。
+ * @param webView                   webView，不能为空
+ * @param userContentController     userContentController(WKWebViewConfiguration的属性)。
+*/
++ (void)registWKWebView:(WKWebView *)webView userContentController:(WKUserContentController *)userContentController;
+/**
+  * @brief 注销webView。
+           注意：必须在viewWillDisappear: 中调用。
+ * @param webView           webView，不能为空
+*/
++ (void)deRegistWKWebView:(WKWebView *)webView;
+```
+
+In your js
+
+```javascript
+
 ```
 
 ## 4 Other config

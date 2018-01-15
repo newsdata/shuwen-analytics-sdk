@@ -12,13 +12,15 @@
 @interface SHWUIWebViewJSBridge : NSObject
 
 /**
- *  invoke this method in main thread.
+ * @brief 注册webView，主线程调用。
+ * @param webView                   webView，不能为空
  */
-+ (void)registWebView:(UIWebView *_Nonnull)webView withId:(NSString *_Nonnull)webViewId;
++ (void)registWebView:(UIWebView *_Nonnull)webView;
 
 /**
- *  remember invoke this method in dealloc
+ * @brief 注销webView，dealloc 中调用。
+ * @param webView           webView，不能为空
  */
-+ (void)deRegistWebViewWithId:(NSString *_Nonnull)webViewId;
++ (void)deRegistWebView:(UIWebView *_Nonnull)webView;
 
 @end

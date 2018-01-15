@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 #import <SHWAnalyticsSDK/SHWUIWebViewJSBridge.h>
+#import <SHWAnalyticsSDK/SHWWKWebViewJSBridge.h>
 #import <SHWAnalyticsSDK/SHWAnalyticsSDKInterface.h>
 #import <SHWAnalyticsSDK/SHWAnalyticsPublicConfig.h>

@@ -237,7 +237,15 @@ custom your report config.
 - (void)setStorageSizeThreshold:(long long)storageSizeThreshold;
 ```
 
-## 5 其它
+### 5 JS 统计 SDK
+
+在 Web 中，为了能统计数据，需要在页面中嵌入 js 版本的无痕统计 SDK
+
+```html
+<script src="https://p.xinwen.cn/dot/tracing.js" data-config='{"webId": yourId}'></script>
+```
+
+## 6 其它
 
 - 由于 UTDID.framework 不支持 bitcode ，需要将 Build setting 下 Build Options 中的Enable Bitcode 至为 NO
 - 测试发现友盟的 SDK 中 crash 上报功能会覆盖其它 SDK 中的 crash 上报，请在接入巴吉度时，关闭友盟的 crash 上报功能； 或者保证在调用友盟的 config 配置后，再调用巴吉度 `startWithConfig：` 方法；

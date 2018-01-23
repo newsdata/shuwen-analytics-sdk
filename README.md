@@ -242,6 +242,7 @@ custom your report config.
 在 Web 中，为了能统计数据，需要在页面中嵌入 js 版本的无痕统计 SDK
 
 ```html
+// ID 目前需要线下申请
 <script src="https://p.xinwen.cn/dot/tracing.js" data-id="your-id"></script>
 ```
 
@@ -255,7 +256,7 @@ $t(category, action, data)
 | 参数        | 类型    |  是否必填  |    描述     |
 | --------   | :-----   | :------- | :---------- |
 | category   | String   |   必填    | 代表统计的分类 |
-| action     | String   |   必填    | 代表统计的标示 |
+| action     | String   |   必填    | 代表统计的标识 |
 | data       | String   |   选填    | 代表统计的额外参数 |
 
 

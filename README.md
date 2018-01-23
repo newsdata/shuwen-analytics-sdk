@@ -242,8 +242,22 @@ custom your report config.
 在 Web 中，为了能统计数据，需要在页面中嵌入 js 版本的无痕统计 SDK
 
 ```html
-<script src="https://p.xinwen.cn/dot/tracing.js" data-config='{"webId": yourId}'></script>
+<script src="https://p.xinwen.cn/dot/tracing.js" data-id="your-id"></script>
 ```
+
+如果在特定的地方需要手动触发统计，需要手动调用 `$t(category, action, data)` 全局函数
+
+```
+<script>
+$t(category, action, data)
+</script>
+```
+| 参数        | 类型    |  是否必填  |    描述     |
+| --------   | :-----   | :------- | :---------- |
+| category   | String   |   必填    | 代表统计的分类 |
+| action     | String   |   必填    | 代表统计的标示 |
+| data       | String   |   选填    | 代表统计的额外参数 |
+
 
 ## 6 其它
 

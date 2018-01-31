@@ -22,6 +22,17 @@ allprojects {
 compile 'com.shuwen.analytics:analytics-sdk:1.1.4'
 ```
 # 使用指南
+## SHWANALYTICS_APPKEY和SHWANALYTICS_CHANNEL配置
+在Android manifest里面配置SHWANALYTICS_APPKEY和SHWANALYTICS_CHANNEL，这两个参数目前有服务端提供
+```
+<meta-data
+    android:name="SHWANALYTICS_APPKEY"
+    android:value="xxxxx" />
+<meta-data
+    android:name="SHWANALYTICS_CHANNEL"
+    android:value="xxxxxx" />
+```
+    
 ## 初始化SDK
 在Application.onCreate()中，须尽早执行初始化：
 ```

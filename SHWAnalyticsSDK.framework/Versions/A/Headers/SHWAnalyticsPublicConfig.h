@@ -18,13 +18,20 @@
 + (SHWAnalyticsPublicConfig *_Nonnull)instanceWithAppKey:(NSString *_Nonnull)appKey;
 
 /**
- *  设置是否开启自动统计功能 (默认开启)
+ *  设置是否开启系统级自动统计功能 (默认开启)
  *
  *  @warning 若关闭此功能，需手动插入埋点代码
  *
  *  @param needAutoTrace 是否开启自动统计
  */
 - (void)setAutoTraceEnable:(BOOL)needAutoTrace;
+
+/**
+ *  设置是否开启UI级自动统计功能 (默认关闭，无特殊需求不建议开启)
+ *
+ *  @param uiNeedAutoTrace 是否开启自动统计
+ */
+- (void)setUIAutoTraceEnable:(BOOL)uiNeedAutoTrace;
 
 /**
  *  设置日志上报周期 （default：15s）
@@ -49,5 +56,13 @@
  *  @param storageSizeThreshold 单位为 KB
  */
 - (void)setStorageSizeThreshold:(long long)storageSizeThreshold;
+
+/**
+ *  设置单个日志文件的最大上传延迟 （default： 300s，最小15s）
+ *  When single file reach storageMaxLatency since it created, this fil will be frozen no matter it's size.
+ *
+ *  @param storageMaxLatency 单位为 s
+ */
+- (void)setStorageMaxLatency:(NSInteger)storageMaxLatency;
 
 @end

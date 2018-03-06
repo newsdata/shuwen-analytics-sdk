@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "SHWAnalyticsPublicConfig.h"
 
+#define SHW_ANALYTICES_SESSION_CREATED_NOTIFICATION @"AnalyticsSessionCreatedNotification"
+
 @interface SHWAnalyticsSDKInterface : NSObject
 
 /** 

@@ -18,7 +18,7 @@
 + (SHWAnalyticsPublicConfig *_Nonnull)instanceWithAppKey:(NSString *_Nonnull)appKey;
 
 /**
- *  设置是否开启系统级自动统计功能 (默认开启)
+ *  设置是否开启系统级自动统计功能 (默认开启)，包括 app启动、app进入前台、退出前台、controllerIn、controllerOut
  *
  *  @warning 若关闭此功能，需手动插入埋点代码
  *
@@ -27,7 +27,7 @@
 - (void)setAutoTraceEnable:(BOOL)needAutoTrace;
 
 /**
- *  设置是否开启UI级自动统计功能 (默认关闭，无特殊需求不建议开启)
+ *  设置是否开启UI级自动统计功能 (默认关闭，无特殊需求不建议开启)，包括所有点击事件
  *
  *  @param uiNeedAutoTrace 是否开启自动统计
  */

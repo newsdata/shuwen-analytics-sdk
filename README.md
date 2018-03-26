@@ -1,4 +1,4 @@
-# 巴吉度 iOS SDK 接入指南(v1.1.7)
+# 巴吉度 iOS SDK 接入指南(v1.1.8)
 
 Deploy target : iOS 8.0.
 

@@ -18,6 +18,13 @@
 + (SHWAnalyticsPublicConfig *_Nonnull)instanceWithAppKey:(NSString *_Nonnull)appKey;
 
 /**
+ *  设备唯一标识 utdid
+ *
+ *  @return utdid
+ */
++ (NSString *_Nonnull)utdid;
+
+/**
  *  设置是否开启系统级自动统计功能 (默认开启)，包括 app启动、app进入前台、退出前台、controllerIn、controllerOut
  *
  *  @warning 若关闭此功能，需手动插入埋点代码

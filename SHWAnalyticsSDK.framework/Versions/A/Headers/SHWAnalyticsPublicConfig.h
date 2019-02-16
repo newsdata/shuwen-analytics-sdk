@@ -18,6 +18,13 @@
 + (SHWAnalyticsPublicConfig *_Nonnull)instanceWithAppKey:(NSString *_Nonnull)appKey;
 
 /**
+ *  设置业务方自己的埋点日志服务端地址
+ *
+ *  @param host  eg: dot.xinhuazhiyun.com
+ */
+- (void)setLogServer:(NSString *)host;
+    
+/**
  *  设备唯一标识 utdid
  *
  *  @return utdid

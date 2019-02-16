@@ -1,6 +1,10 @@
-# 巴吉度 iOS SDK 接入指南(v1.1.8)
+# 巴吉度 iOS SDK 接入指南(v1.2.0)
 
 Deploy target : iOS 8.0.
+
+## 0 文档迁移
+
+注： 文档已经同步到语雀平台，此处文档可能未及时更新，以 [语雀上的巴吉度文档](https://xhzy.yuque.com/client/analytics/vvla8k) 为准
 
 ## 1 如何接入
 
@@ -8,15 +12,11 @@ Deploy target : iOS 8.0.
 
 ```ruby
 target 'YourProject' do
-  pod 'SHWAnalyticsSDK', '~> 1.1.7'
+  pod 'SHWAnalyticsSDK', '~> 1.2.0'
 end
 ```
 
 ### 1.2 执行 `pod install`
-
-### 1.3 Config
-
-"Build Settings" -> "Other Linker Flags", add "-Objc".
 
 ## 2 Regist your app.
 

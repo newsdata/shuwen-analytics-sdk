@@ -1,10 +1,13 @@
-# 巴吉度 iOS SDK 接入指南(v1.2.0)
+# 巴吉度 iOS SDK 接入指南(v1.2.1)
 
 Deploy target : iOS 8.0.
 
 ## 0 文档迁移
 
-注： 文档已经同步到语雀平台，此处文档可能未及时更新，以 [语雀上的巴吉度文档](https://xhzy.yuque.com/client/analytics/vvla8k) 为准
+### 注：
+
+- 本 SDK 文档已迁移到语雀平台，此处文档可能未及时更新，以 [语雀上的巴吉度文档](https://xhzy.yuque.com/client/analytics/vvla8k) 为准
+- [接入常见问题 FAQ](https://xhzy.yuque.com/client/analytics/iga18g)
 
 ## 1 如何接入
 
@@ -12,7 +15,7 @@ Deploy target : iOS 8.0.
 
 ```ruby
 target 'YourProject' do
-  pod 'SHWAnalyticsSDK', '~> 1.2.0'
+  pod 'SHWAnalyticsSDK', '~> 1.2.1'
 end
 ```
 
@@ -35,6 +38,8 @@ appKey值可从新华智云接口人获取（网站建设中，目前请联系�
 int main(int argc, char * argv[]) {
     @autoreleasepool {
 
+        // 注： 正常在 Appdelegate.m 的 application: didFinishLaunchingWithOptions: 进行 SDK 的初始化即可
+    		//      如果需要关闭 SDK 的自动埋点（见： SHWAnalyticsPublicConfig.h 的 setAutoTraceEnable），则必须在 main.m 中进行 SDK 初始化
         SHWAnalyticsPublicConfig *config = [SHWAnalyticsPublicConfig instanceWithAppKey:@"your AppKey"];
 //        [config setUploadInterval:15];
 //        [config setStorageSizeThreshold:5];
@@ -274,4 +279,3 @@ $t(category, action, data)
 
 - 由于 UTDID.framework 不支持 bitcode ，需要将 Build setting 下 Build Options 中的Enable Bitcode 至为 NO
 - 测试发现友盟的 SDK 中 crash 上报功能会覆盖其它 SDK 中的 crash 上报，请在接入巴吉度时，关闭友盟的 crash 上报功能； 或者保证在调用友盟的 config 配置后，再调用巴吉度 `startWithConfig：` 方法；
-

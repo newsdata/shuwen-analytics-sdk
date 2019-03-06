@@ -102,4 +102,9 @@
  */
 + (NSString *_Nullable)queryUTDID;
 
+/**
+ *  打印 SDK 内部日志，仅用于排查接入错误（默认关闭）
+ */
++ (void)setLogEnable:(BOOL)enable;
+
 @end

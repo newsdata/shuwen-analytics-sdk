@@ -27,7 +27,10 @@
 + (void)appResignActive;
 
 + (void)controllerIn:(NSString *_Nonnull)pageName;
++ (void)controllerIn:(NSString *_Nonnull)pageName prePage:(NSString *)referer;
+
 + (void)controllerOut:(NSString *_Nonnull)pageName;
++ (void)controllerOut:(NSString *_Nonnull)pageName duration:(int)duration;
 // ******************** 自动埋点，可不必手动添加 ↑ ************************
 
 #pragma mark - custom event

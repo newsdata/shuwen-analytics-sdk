@@ -1,4 +1,4 @@
-# 巴吉度 iOS SDK 接入指南(v1.3.0)
+# 巴吉度 iOS SDK 接入指南(v1.4.1)
 
 Deploy target : iOS 8.0.
 
@@ -15,7 +15,7 @@ Deploy target : iOS 8.0.
 
 ```ruby
 target 'YourProject' do
-  pod 'SHWAnalyticsSDK', '~> 1.3.0'
+  pod 'SHWAnalyticsSDK', '~> 1.4.1'
 end
 ```
 

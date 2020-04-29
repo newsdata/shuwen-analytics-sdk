@@ -2,6 +2,10 @@
 
 ## iOS Changes
 
+### 1.4.1
+
+- Fix: podfile 里不加 use_frameworks! 报错问题
+
 ### 1.4.0
 
 - 移除 `SHWUIWebViewJSBridge`
